@@ -30,16 +30,13 @@ export default defineComponent({
       'Lol',
       'HEHE'
     ]
-
-    const rows = words.map(w => Testi(w))
+    
+    const rows = words.map(w => <Testi2 greeting={w} />)
     console.log(rows[0])
 
     const ret = () => <div>
       <h1>{name.value}</h1>
       <h2>{ rows }</h2>
-      -------------
-      { Testi2 }
-      <Testi2 greeting="heee" />
     </div>
 
     return ret
