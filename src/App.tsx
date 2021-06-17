@@ -1,11 +1,22 @@
 import { defineComponent, ref } from 'vue';
-import { useMouse } from '@vueuse/core';
 import Testi from './Testi'
+
+const Testi2 = defineComponent({
+  props: {
+    greeting: String
+  },
+  setup(props) {
+    return () => (
+      <div>
+        { props.greeting } :D
+      </div>
+    )
+  }
+})
 
 export default defineComponent({
   name: 'App',
   setup() {
-    const {x, y} = useMouse()
     const name = ref("kakka")
     const age = ref(69)
     const onClick = () => { 
@@ -13,23 +24,22 @@ export default defineComponent({
       age.value++
     }
 
-    const juttu = () => <div>
-      <button onClick={() => age.value++}>inc</button>
-      <div>{age.value}</div>
-      { Testi(age.value.toString()) }
-    </div>
+    const words = [
+      'Höö',
+      'Haa',
+      'Lol',
+      'HEHE'
+    ]
 
-    const mouseInfo = () => (
-      <>
-        <div>x: { x.value }</div>
-        <div>y: { y.value }</div>
-      </>
-    )
+    const rows = words.map(w => Testi(w))
+    console.log(rows[0])
 
     const ret = () => <div>
       <h1>{name.value}</h1>
-      <h2>{ juttu() }</h2>
-      <mouseInfo />
+      <h2>{ rows }</h2>
+      -------------
+      { Testi2 }
+      <Testi2 greeting="heee" />
     </div>
 
     return ret
