@@ -1,5 +1,14 @@
-export default function Testi(greeting: string) {
-	return <div>
-		{greeting} :D
-	</div>
+import VObject from './VObject'
+import TestiSub from './TestiSub'
+export default class Testi extends VObject {
+	render() {
+		return (
+			<>
+			<h3>Moi</h3>
+			<ul>
+				{ super.render() }
+			</ul>
+			</>
+		)
+	}
 }

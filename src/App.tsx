@@ -1,44 +1,17 @@
 import { defineComponent, ref } from 'vue';
 import Testi from './Testi'
-
-const Testi2 = defineComponent({
-  props: {
-    greeting: String
-  },
-  setup(props) {
-    return () => (
-      <div>
-        { props.greeting } :D
-      </div>
-    )
-  }
-})
+import TestiSub from './TestiSub'
 
 export default defineComponent({
   name: 'App',
   setup() {
-    const name = ref("kakka")
-    const age = ref(69)
-    const onClick = () => { 
-      console.log(age.value)
-      age.value++
-    }
+    const testi = new Testi()
+    const testiSub = new TestiSub(testi)
 
-    const words = [
-      'Höö',
-      'Haa',
-      'Lol',
-      'HEHE'
-    ]
-    
-    const rows = words.map(w => <Testi2 greeting={w} />)
-    console.log(rows[0])
+    ;(window as any).testi = testi
 
-    const ret = () => <div>
-      <h1>{name.value}</h1>
-      <h2>{ rows }</h2>
-    </div>
-
-    return ret
+    return () => (
+      <div>{ testi.render() } :D</div>
+    )
   }
 })
